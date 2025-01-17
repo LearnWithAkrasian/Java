@@ -2,3 +2,5 @@
 
 - When I tried to run gradle build, I encountered an error due to the use of the testCompile configuration in the build.gradle file. Since I was using Gradle version 8, the testCompile configuration was no longer supported.
 To fix the issue, I replaced testCompile with testImplementation, which is the correct configuration in Gradle 8.
+
+- **Error running `Tomcat 9.0.98` Address localhost:8080 is already in use:**
