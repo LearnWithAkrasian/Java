@@ -11,11 +11,12 @@
 
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/5.3.8/css/bootstrap.css">
     <title>All Products</title>
 </head>
 <body>
-
-    <table>
+<div class="container">
+    <table class="table">
         <thead>
         <tr>
             <th>Name</th>
@@ -34,5 +35,6 @@
             </tr>
         </c:forEach>
     </table>
+</div>
 </body>
 </html>
