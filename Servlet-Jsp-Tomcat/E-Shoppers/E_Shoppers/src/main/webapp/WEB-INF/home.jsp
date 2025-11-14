@@ -5,9 +5,8 @@
   Time: 5:00 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.imran.dto.ProductDto" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -15,8 +14,6 @@
     <title>All Products</title>
 </head>
 <body>
-
-    <% List<ProductDto> products = (List<ProductDto>) request.getAttribute("products"); %>
 
     <table>
         <thead>
@@ -27,19 +24,15 @@
         </tr>
         </thead>
 
-        <% for (ProductDto product : products) {%>
-        <tr>
-            <td>
-                <%= product.getName() %>
-            </td>
-            <td>
-                <%= product.getPrice() %>
-            </td>
-            <td>
-                <%= product.getDescription() %>
-            </td>
-        </tr>
-        <%}%>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td><c:out value="${product.name}"/></td>
+
+                <td><c:out value="${product.description}"/></td>
+
+                <td><c:out value="${product.price}"/></td>
+            </tr>
+        </c:forEach>
     </table>
 </body>
 </html>
