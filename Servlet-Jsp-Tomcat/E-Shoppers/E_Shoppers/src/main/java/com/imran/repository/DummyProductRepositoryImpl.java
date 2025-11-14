@@ -22,7 +22,11 @@ public class DummyProductRepositoryImpl implements ProductRepository {
                 new ProductDto(
                         "Keyboard",
                         "Keychorn K3 Ultra slim",
-                        BigDecimal.valueOf(635.55))
+                        BigDecimal.valueOf(635.55)),
+                new ProductDto(
+                        "Microsoft Surface",
+                        "Surface Pro Max",
+                        BigDecimal.valueOf(777.99))
         );
     }
 }
