@@ -45,6 +45,13 @@
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" id="lastName" name="Hossain"/>
         </div>
+
+        <hr class="mb-4">
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg" type="submit">
+                Sign Up
+            </button>
+        </div>
     </form>
 </div>
 <%@include file="includes/footer.jsp"%>
