@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.mockito:mockito-core:5.5.0'
     implementation 'jstl:jstl:1.2'
     implementation "org.webjars:bootstrap:5.3.8"
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
 }
 
 test {
