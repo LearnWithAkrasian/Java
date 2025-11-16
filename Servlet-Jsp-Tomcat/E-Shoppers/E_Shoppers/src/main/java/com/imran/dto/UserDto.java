@@ -1,11 +1,34 @@
 package com.imran.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class UserDto {
+
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String firstName;
+
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String lastName;
+
+    @NotEmpty
+    @Size(min = 3, max = 50)
+    @Email
     private String email;
+
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String username;
+
+    @NotEmpty
+    @Size(min = 4, max = 16)
     private String password;
+
+    @NotEmpty
+    @Size(min = 4, max = 16)
     private String confirmPassword;
 
     public String getFirstName() {

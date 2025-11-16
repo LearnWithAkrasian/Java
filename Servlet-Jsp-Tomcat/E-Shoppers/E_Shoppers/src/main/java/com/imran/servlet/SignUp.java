@@ -4,6 +4,8 @@ import com.imran.dto.UserDto;
 import com.imran.repository.UserRepositoryImpl;
 import com.imran.service.UserService;
 import com.imran.service.UserServiceImpl;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet("/signup")
 public class SignUp extends HttpServlet {
@@ -34,6 +37,7 @@ public class SignUp extends HttpServlet {
             throws ServletException, IOException {
         UserDto userDto = copyParametersTo(req);
 
+        LOGGER.info("Testing validation of given user data.");
         if (isValid(userDto)) {
             LOGGER.info("Creating a new user with: {}", userDto);
             userService.saveUser(userDto);
@@ -58,6 +62,10 @@ public class SignUp extends HttpServlet {
     }
 
     private boolean isValid(UserDto userDto) {
-        return true;
+        var validatorFactory = Validation.buildDefaultValidatorFactory();
+        var validator = validatorFactory.getValidator();
+
+        Set<ConstraintViolation<UserDto>> violations = validator.validate(userDto);
+        return violations.isEmpty();
     }
 }
