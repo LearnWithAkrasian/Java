@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @WebServlet("/signup")
@@ -36,14 +38,16 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         UserDto userDto = copyParametersTo(req);
+        Map<String, String> errors = validate(userDto);
 
         LOGGER.info("Testing validation of given user data.");
-        if (isValid(userDto)) {
+        if (errors.isEmpty()) {
             LOGGER.info("Creating a new user with: {}", userDto);
             userService.saveUser(userDto);
             resp.sendRedirect("/home");
         } else {
             LOGGER.info("User sent invalid data: {}", userDto);
+            req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp")
                     .forward(req, resp);
         }
@@ -55,17 +59,30 @@ public class SignUp extends HttpServlet {
         userDto.setLastName(req.getParameter("lastName"));
         userDto.setEmail(req.getParameter("email"));
         userDto.setPassword(req.getParameter("password"));
-        userDto.setConfirmPassword(req.getParameter("passwordConfirm"));
+        userDto.setConfirmPassword(req.getParameter("confirmPassword"));
         userDto.setUsername(req.getParameter("username"));
 
         return userDto;
     }
 
-    private boolean isValid(UserDto userDto) {
+    private Map<String, String> validate(UserDto userDto) {
         var validatorFactory = Validation.buildDefaultValidatorFactory();
         var validator = validatorFactory.getValidator();
 
         Set<ConstraintViolation<UserDto>> violations = validator.validate(userDto);
-        return violations.isEmpty();
+
+        Map<String, String> errors = new HashMap<>();
+
+        for (ConstraintViolation<UserDto> violation : violations) {
+            String path = violation.getPropertyPath().toString();
+            if (errors.containsKey(path)) {
+                String errorMsg = errors.get(path);
+                errors.put(path, errorMsg + " <br/> " + violation.getMessage());
+            }
+            else {
+                errors.put(path, violation.getMessage());
+            }
+        }
+        return errors;
     }
 }
