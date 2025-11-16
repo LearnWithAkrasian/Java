@@ -6,6 +6,30 @@
 
 Solution: The issue was a syntax error I just wrote ```%logger(36)``` instead of ```%logger{36}``` XD. `%logger{36} tells Logback to output the logger name with a maximum of 36 characters.
 
-# Problem 2: When I ran the root path like “localhost:8080/”, it returned a 404 error.
-Solution: The issue was due to not having an index.jsp file. Tomcat, by default, looks for welcome files such as index.jsp or index.html. Once we add the index.jsp file and configure it to redirect to the /home servlet, the issue is resolved.
+# Problem 2: I tried to use ***Bean Validation*** (Jakarta Validation / Hibernate Validator) in a Java 17 project, but it did not work.
+
+***Solution:***
+- Dependencies were outdated (using old javax.validation instead of the new jakarta.validation)
+- Gradle versions above 6 require modern dependency coordinates
+- Java 17 also requires newer versions of Hibernate Validator
+  So validation annotations like:
+```java
+@NotNull
+@Email
+@Size(min = 3)
+```
+did not work or caused class-not-found errors.
+
+# Because of Namespace Change
+- Bean Validation moved from javax → jakarta after Java EE became Jakarta EE.
+- Old dependency (no longer works with Java 17):
+
+But bean validation API alone is NOT enough.
+It also need an implementation, and the modern implementation is:
+```java
+✔ org.hibernate.validator.hibernate-validator (Jakarta version)
+```
+If the API is included only , nothing actually performs validation → validation fails silently.
+
+  ![Alter text](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/E_Shoppers/src/main/webapp/image/Screenshot%202025-11-17%20at%2003-22-32%20All%20Products.png?raw=true)
 
