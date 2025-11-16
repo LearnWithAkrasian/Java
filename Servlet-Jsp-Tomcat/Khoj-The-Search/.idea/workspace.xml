@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="328259d4-4fa7-4e7f-84c9-4414c5aa01dd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/java/com/imran/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/java/com/imran/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/address.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/address.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/contact.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/includes/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/nidInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/nidInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Taka-Poisa/src/main/webapp/WEB-INF/signup.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Khoj-The-Search" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4c83d4bd-a512-4e91-b5d5-26367f157d55/console.sql" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.jdks/corretto-11.0.21/lib/src.zip!/java.base/java/util/Vector.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/imran/repository/JdbcNumberListRepository.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/imran/service/RESTApiServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2Y182gkNJZl4UP1eNpBO2MxPOGt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/peripatetic/Practice/JavaPractice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Perforce",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.imran.Test" />
+      <module name="Khoj-The-Search.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.imran.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.78" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.78" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Gradle : com.khoj.the.search : Khoj-The-Search-1.0-SNAPSHOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="9ea66477-2774-4fa1-9a32-0ff24f143b8a" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="36327" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Gradle : com.khoj.the.search : Khoj-The-Search-1.0-SNAPSHOT.war" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.21-corretto-11.0.21-3183f394aec4-585ed96d" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="328259d4-4fa7-4e7f-84c9-4414c5aa01dd" name="Changes" comment="" />
+      <created>1700153865153</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700153865153</updated>
+      <workItem from="1700153866197" duration="1900000" />
+      <workItem from="1700155816148" duration="91000" />
+      <workItem from="1700164987354" duration="419000" />
+      <workItem from="1700209366660" duration="2801000" />
+      <workItem from="1700213179357" duration="377000" />
+      <workItem from="1700213676161" duration="1261000" />
+      <workItem from="1700259420186" duration="2183000" />
+      <workItem from="1700325662606" duration="1637000" />
+      <workItem from="1700364777147" duration="599000" />
+      <workItem from="1700374378827" duration="29000" />
+      <workItem from="1700472125528" duration="2265000" />
+      <workItem from="1700497950964" duration="3463000" />
+      <workItem from="1700584385632" duration="5612000" />
+      <workItem from="1700631888598" duration="10102000" />
+      <workItem from="1700655386557" duration="1610000" />
+      <workItem from="1700711917253" duration="155000" />
+      <workItem from="1700759892843" duration="2843000" />
+      <workItem from="1700805532272" duration="5448000" />
+      <workItem from="1700914463946" duration="3559000" />
+      <workItem from="1700921354308" duration="1370000" />
+      <workItem from="1700922813491" duration="957000" />
+      <workItem from="1700979050053" duration="4661000" />
+      <workItem from="1700985734602" duration="6801000" />
+      <workItem from="1700999558159" duration="5992000" />
+      <workItem from="1701066314550" duration="95000" />
+      <workItem from="1701069920449" duration="697000" />
+      <workItem from="1701077727138" duration="848000" />
+      <workItem from="1701105097146" duration="3645000" />
+      <workItem from="1701149689449" duration="38000" />
+      <workItem from="1701160450445" duration="4238000" />
+      <workItem from="1701187232594" duration="5965000" />
+      <workItem from="1701238349437" duration="1462000" />
+      <workItem from="1701250722806" duration="1206000" />
+      <workItem from="1701276814575" duration="647000" />
+      <workItem from="1701402686685" duration="12879000" />
+      <workItem from="1701496044359" duration="5533000" />
+      <workItem from="1701581560581" duration="576000" />
+      <workItem from="1701592843669" duration="4818000" />
+      <workItem from="1701620474891" duration="2605000" />
+      <workItem from="1701623101011" duration="110000" />
+      <workItem from="1701696396384" duration="13768000" />
+      <workItem from="1701754450861" duration="123000" />
+      <workItem from="1701763717816" duration="6173000" />
+      <workItem from="1701777397692" duration="2000" />
+      <workItem from="1701777408567" duration="5000" />
+      <workItem from="1701777672054" duration="5183000" />
+      <workItem from="1701796381902" duration="22000" />
+      <workItem from="1701796565081" duration="2567000" />
+      <workItem from="1701842687207" duration="30000" />
+      <workItem from="1701851141642" duration="3887000" />
+      <workItem from="1701957207548" duration="2041000" />
+      <workItem from="1701977908641" duration="4548000" />
+      <workItem from="1702011650019" duration="68000" />
+      <workItem from="1702112356302" duration="456000" />
+      <workItem from="1702113003928" duration="276000" />
+      <workItem from="1702114669888" duration="657000" />
+      <workItem from="1702144203629" duration="624000" />
+      <workItem from="1702150727363" duration="71000" />
+      <workItem from="1702189876396" duration="18000" />
+      <workItem from="1702190024718" duration="4448000" />
+      <workItem from="1702197970581" duration="1497000" />
+      <workItem from="1702225503551" duration="695000" />
+      <workItem from="1702238348814" duration="61000" />
+      <workItem from="1702402624869" duration="1796000" />
+      <workItem from="1702439804348" duration="83000" />
+      <workItem from="1702458018445" duration="3032000" />
+      <workItem from="1702486707846" duration="32000" />
+      <workItem from="1702545404970" duration="1483000" />
+      <workItem from="1702575497342" duration="913000" />
+      <workItem from="1703495255454" duration="479000" />
+      <workItem from="1703533317830" duration="3534000" />
+      <workItem from="1703580428355" duration="3886000" />
+      <workItem from="1703610071976" duration="2556000" />
+      <workItem from="1703664008995" duration="123000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
