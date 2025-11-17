@@ -18,7 +18,7 @@
           action="<c:url value="/signup"/>" method="post">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder=""/>
+            <input type="text" class="form-control" id="username" name="username" value="${userDto.username}" placeholder=""/>
             <c:if test="${errors.username != null}">
                 <small class="text-danger">${errors.username}</small>
             </c:if>
@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com"/>
+            <input type="email" class="form-control" id="email" name="email" value="${userDto.email}" placeholder="you@example.com"/>
             <c:if test="${errors.email != null}">
                 <small class="text-danger">${errors.email}</small>
             </c:if>
@@ -50,7 +50,7 @@
 
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName"/>
+            <input type="text" class="form-control" id="firstName" value="${userDto.firstName}" name="firstName"/>
             <c:if test="${errors.firstName != null}">
                 <small class="text-danger">${errors.firstName}</small>
             </c:if>
@@ -58,7 +58,7 @@
 
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName"/>
+            <input type="text" class="form-control" id="lastName" value="${userDto.lastName}" name="lastName"/>
             <c:if test="${errors.lastName != null}">
                 <small class="text-danger">${errors.lastName}</small>
             </c:if>

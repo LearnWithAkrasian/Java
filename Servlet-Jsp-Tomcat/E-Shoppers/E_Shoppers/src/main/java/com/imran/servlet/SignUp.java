@@ -46,16 +46,19 @@ public class SignUp extends HttpServlet {
         } else if(userService.isNotUniqueUsername(userDto)) {
             LOGGER.info("User with username {} already exists.", userDto.getUsername());
             errors.put("username", "User with username already exists.");
+            req.setAttribute("userDto", userDto);
             req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         } else if(userService.isNotUniqueEmail(userDto)) {
             LOGGER.info("User with email {} already exists.", userDto.getUsername());
             errors.put("email", "User with email already exists.");
+            req.setAttribute("userDto", userDto);
             req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         }
         else {
             LOGGER.info("User sent invalid data: {}", userDto);
+            req.setAttribute("userDto", userDto);
             req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp")
                     .forward(req, resp);
