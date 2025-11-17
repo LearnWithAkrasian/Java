@@ -4,6 +4,7 @@ import com.imran.dto.UserDto;
 import com.imran.repository.UserRepositoryImpl;
 import com.imran.service.UserService;
 import com.imran.service.UserServiceImpl;
+import com.imran.util.ValidationUtil;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import org.slf4j.Logger;
@@ -15,9 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @WebServlet("/signup")
 public class SignUp extends HttpServlet {
@@ -38,14 +36,25 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         UserDto userDto = copyParametersTo(req);
-        Map<String, String> errors = validate(userDto);
+        var errors = ValidationUtil.getInstance().validate(userDto);
 
         LOGGER.info("Testing validation of given user data.");
         if (errors.isEmpty()) {
             LOGGER.info("Creating a new user with: {}", userDto);
             userService.saveUser(userDto);
             resp.sendRedirect("/home");
-        } else {
+        } else if(userService.isNotUniqueUsername(userDto)) {
+            LOGGER.info("User with username {} already exists.", userDto.getUsername());
+            errors.put("username", "User with username already exists.");
+            req.setAttribute("errors", errors);
+            req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
+        } else if(userService.isNotUniqueEmail(userDto)) {
+            LOGGER.info("User with email {} already exists.", userDto.getUsername());
+            errors.put("email", "User with email already exists.");
+            req.setAttribute("errors", errors);
+            req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
+        }
+        else {
             LOGGER.info("User sent invalid data: {}", userDto);
             req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp")
@@ -63,26 +72,5 @@ public class SignUp extends HttpServlet {
         userDto.setUsername(req.getParameter("username"));
 
         return userDto;
-    }
-
-    private Map<String, String> validate(UserDto userDto) {
-        var validatorFactory = Validation.buildDefaultValidatorFactory();
-        var validator = validatorFactory.getValidator();
-
-        Set<ConstraintViolation<UserDto>> violations = validator.validate(userDto);
-
-        Map<String, String> errors = new HashMap<>();
-
-        for (ConstraintViolation<UserDto> violation : violations) {
-            String path = violation.getPropertyPath().toString();
-            if (errors.containsKey(path)) {
-                String errorMsg = errors.get(path);
-                errors.put(path, errorMsg + " <br/> " + violation.getMessage());
-            }
-            else {
-                errors.put(path, violation.getMessage());
-            }
-        }
-        return errors;
     }
 }
