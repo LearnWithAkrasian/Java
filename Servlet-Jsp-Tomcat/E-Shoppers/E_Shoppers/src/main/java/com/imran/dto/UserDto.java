@@ -1,9 +1,15 @@
 package com.imran.dto;
 
+import com.imran.annotation.PasswordEqual;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+@PasswordEqual(
+        first = "password",
+        second = "confirmPassword",
+        message = "password and confirm password do not match"
+)
 public class UserDto {
 
     @NotEmpty
