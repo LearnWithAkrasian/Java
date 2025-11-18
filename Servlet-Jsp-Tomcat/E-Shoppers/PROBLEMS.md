@@ -1,4 +1,4 @@
-# Problem 1: When I configured the `logback.xml` file to write logs to a file using `RollingFileAppender`, it was not working and was showing this type of error.
+## Problem 1: When I configured the `logback.xml` file to write logs to a file using `RollingFileAppender`, it was not working and was showing this type of error.
 ```vbnet
 |-ERROR in ch.qos.logback.core.pattern.parser.Compiler@... - Failed to instantiate converter class [ch.qos.logback.classic.pattern.LoggerConverter] as a composite converter for keyword [logger] ch.qos.logback.core.util.IncompatibleClassException
 |-ERROR in ch.qos.logback.core.pattern.parser.Compiler@... - Failed to create converter for [%logger] keyword
@@ -6,7 +6,7 @@
 
 Solution: The issue was a syntax error I just wrote ```%logger(36)``` instead of ```%logger{36}``` XD. `%logger{36} tells Logback to output the logger name with a maximum of 36 characters.
 
-# Problem 2: I tried to use ***Bean Validation*** (Jakarta Validation / Hibernate Validator) in a Java 17 project, but it did not work.
+## Problem 2: I tried to use ***Bean Validation*** (Jakarta Validation / Hibernate Validator) in a Java 17 project, but it did not work.
 
 ***Solution:***
 - Dependencies were outdated (using old javax.validation instead of the new jakarta.validation)
@@ -20,7 +20,7 @@ Solution: The issue was a syntax error I just wrote ```%logger(36)``` instead of
 ```
 did not work or caused class-not-found errors.
 
-# Because of Namespace Change
+### Because of Namespace Change
 - Bean Validation moved from javax → jakarta after Java EE became Jakarta EE.
 - Old dependency (no longer works with Java 17):
 
@@ -32,4 +32,44 @@ It also need an implementation, and the modern implementation is:
 If the API is included only , nothing actually performs validation → validation fails silently.
 
   ![Alter text](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/E_Shoppers/src/main/webapp/image/Screenshot%202025-11-17%20at%2003-22-32%20All%20Products.png?raw=true)
+
+
+## Problem 3: When the form is submitted with empty username and password, the servlet detects validation errors, forwards the request back to the login page, but because the method does not stop after forwarding, it continues running and later tries to redirect, causing the "response already committed" exception. and I get the following error message IllegalStateException: `Cannot call sendRedirect() after the response has been committed`.
+![Alter text](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/E_Shoppers/src/main/webapp/image/Screenshot%202025-11-17%20at%2003-22-32%20All%20Products.png?raw=true)
+
+In my doPost() method:
+```java
+req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+// return;   <-- You commented this out
+```
+After forwarding to the JSP, the response becomes [committed](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/PROBLEMS.md#a-response-is-called-committed-when) (sent to the browser).
+But because you did not return, the code continues and executes:
+```java
+resp.sendRedirect("/home");
+```
+This causes the exception:
+```java
+IllegalStateException: Cannot call sendRedirect() after the response has been committed
+```
+
+✅ ***Then id do that:***
+After forwarding, you must stop further execution by adding:
+```java
+return;
+```
+Full fix inside your validation block:
+```java
+if (!errors.isEmpty()) {
+    req.setAttribute("errors", errors);
+    req.getRequestDispatcher("/WEB-INF/login.jsp")
+            .forward(req, resp);
+
+    return; // <-- REQUIRED to prevent redirect after forward
+}
+
+```
+
+### A response is called committed when:
+***The server has already started sending the HTTP response headers/body to the browser.***
+After this point, I cannot change the response anymore.
 
