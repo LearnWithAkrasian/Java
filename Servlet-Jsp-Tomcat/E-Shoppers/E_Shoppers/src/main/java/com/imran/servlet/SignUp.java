@@ -39,10 +39,12 @@ public class SignUp extends HttpServlet {
         var errors = ValidationUtil.getInstance().validate(userDto);
 
         LOGGER.info("Testing validation of given user data.");
-        if (errors.isEmpty()) {
-            LOGGER.info("Creating a new user with: {}", userDto);
-            userService.saveUser(userDto);
-            resp.sendRedirect("/home");
+        if (!errors.isEmpty()) {
+            LOGGER.info("User sent invalid data: {}", userDto);
+            req.setAttribute("userDto", userDto);
+            req.setAttribute("errors", errors);
+            req.getRequestDispatcher("/WEB-INF/signup.jsp")
+                    .forward(req, resp);
         } else if(userService.isNotUniqueUsername(userDto)) {
             LOGGER.info("User with username {} already exists.", userDto.getUsername());
             errors.put("username", "User with username already exists.");
@@ -57,11 +59,9 @@ public class SignUp extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         }
         else {
-            LOGGER.info("User sent invalid data: {}", userDto);
-            req.setAttribute("userDto", userDto);
-            req.setAttribute("errors", errors);
-            req.getRequestDispatcher("/WEB-INF/signup.jsp")
-                    .forward(req, resp);
+            LOGGER.info("Creating a new user with: {}", userDto);
+            userService.saveUser(userDto);
+            resp.sendRedirect("/home");
         }
     }
 

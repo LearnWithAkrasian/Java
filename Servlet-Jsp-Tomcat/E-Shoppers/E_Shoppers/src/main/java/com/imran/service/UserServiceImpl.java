@@ -6,11 +6,19 @@ import com.imran.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
+
+
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-    private UserRepository userRepository;
+    // final ensures repository cannot be reassigned accidentally.
+    private final UserRepository userRepository;
 
+    // Constructor injection is safe and makes dependency mandatory.
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -24,7 +32,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
 
-        LOGGER.info("Passing the user to database successful");
+        LOGGER.info("User saved successfully to the database.");
         userRepository.save(user);
     }
 
@@ -40,7 +48,16 @@ public class UserServiceImpl implements UserService {
                 .isPresent();
     }
 
+
     private String encryptPassword(String password) {
-        return password;
+        try {
+            var digest = MessageDigest.getInstance("SHA-256");
+            var bytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            // The method converts bytes to hex.
+            return HexFormat.of().formatHex(bytes);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Unable to encrypt password.", e);
+        }
     }
 }
