@@ -34,7 +34,7 @@ If the API is included only , nothing actually performs validation → validatio
   ![Alter text](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/E_Shoppers/src/main/webapp/image/Screenshot%202025-11-17%20at%2003-22-32%20All%20Products.png?raw=true)
 
 
-# Problem 3: I tried to use ***Bean Validation*** (Jakarta Validation / Hibernate Validator) in a Java 17 project, but it did not work. and I get the following error message `IllegalStateException: Cannot call sendRedirect() after the response has been committed`.
+# Problem 3: When the form is submitted with empty username and password, the servlet detects validation errors, forwards the request back to the login page, but because the method does not stop after forwarding, it continues running and later tries to redirect, causing the "response already committed" exception. and I get the following error message IllegalStateException: ```Cannot call sendRedirect() after the response has been committed```.
 ![Alter text](https://github.com/LearnWithAkrasian/Java/blob/main/Servlet-Jsp-Tomcat/E-Shoppers/E_Shoppers/src/main/webapp/image/Screenshot%202025-11-17%20at%2003-22-32%20All%20Products.png?raw=true)
 
 In my doPost() method:
