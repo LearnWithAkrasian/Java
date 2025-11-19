@@ -71,5 +71,11 @@
             </button>
         </div>
     </form>
+    <span>
+        Already have an account?
+        <a class="btn-link" href="<c:url value="/login"/>">
+            Login
+        </a>
+    </span>
 </div>
 <%@include file="includes/footer.jsp"%>

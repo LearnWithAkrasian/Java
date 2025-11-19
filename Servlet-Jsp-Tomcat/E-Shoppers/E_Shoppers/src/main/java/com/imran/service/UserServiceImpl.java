@@ -1,7 +1,9 @@
 package com.imran.service;
 
 import com.imran.domain.User;
+import com.imran.dto.LoginDto;
 import com.imran.dto.UserDto;
+import com.imran.exceptions.UserNotFoundException;
 import com.imran.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
+import java.util.Optional;
 
 
 public class UserServiceImpl implements UserService {
@@ -46,6 +49,18 @@ public class UserServiceImpl implements UserService {
     public boolean isNotUniqueEmail(UserDto userDto) {
         return userRepository.findByEmail(userDto.getEmail())
                 .isPresent();
+    }
+
+    @Override
+    public User verifyUser(LoginDto loginDto) {
+        var user = userRepository.findByUsername(loginDto.getUsername())
+                .orElseThrow(() -> new UserNotFoundException("User not found with username: " + loginDto.getUsername()));
+
+        var encryptedPassword = encryptPassword(loginDto.getPassword());
+        if (user.getPassword().equals(encryptedPassword)) {
+            return user;
+        }
+        throw new UserNotFoundException("Incorrect Username or Password");
     }
 
 

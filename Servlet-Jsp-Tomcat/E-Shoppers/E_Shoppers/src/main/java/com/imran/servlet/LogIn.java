@@ -1,7 +1,12 @@
 package com.imran.servlet;
 
+import com.imran.domain.User;
 import com.imran.dto.LoginDto;
 import com.imran.exceptions.UserNotFoundException;
+import com.imran.repository.UserRepositoryImpl;
+import com.imran.service.UserService;
+import com.imran.service.UserServiceImpl;
+import com.imran.util.SecurityContext;
 import com.imran.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +16,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/login")
 public class LogIn extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogIn.class);
+    private UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         LOGGER.info("Serving Log in page");
+        String logout = req.getParameter("logout");
+        if (logout != null && Boolean.parseBoolean(logout)) {
+            req.setAttribute("message", "You've been logged out");
+        }
         req.getRequestDispatcher("/WEB-INF/login.jsp")
                 .forward(req, resp);
     }
@@ -55,7 +67,10 @@ public class LogIn extends HttpServlet {
         }
     }
 
-    private void login(LoginDto loginDto, HttpServletRequest req) throws UserNotFoundException {
+    private void login(LoginDto loginDto, HttpServletRequest req)
+            throws UserNotFoundException {
+        User user = userService.verifyUser(loginDto);
 
+        SecurityContext.login(user, req);
     }
 }

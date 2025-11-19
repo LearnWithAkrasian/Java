@@ -40,5 +40,18 @@
             </button>
         </div>
     </form>
+    <span>
+        Don't have an account?
+        <a class="btn-link" href="<c:url value="/signup"/>">
+            Sign Up
+        </a>
+    </span>
+    <div class="row">
+        <c:if test="${message != null}">
+            <div class="alert alert-success">
+                ${message}
+            </div>
+        </c:if>
+    </div>
 </div>
 <%@include file="includes/footer.jsp"%>

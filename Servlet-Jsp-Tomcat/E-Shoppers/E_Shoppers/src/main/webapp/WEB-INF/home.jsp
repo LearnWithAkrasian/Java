@@ -12,7 +12,12 @@
 <div class="container">
     <div class="bg-light-subtle shadow p-4 rounded d-flex">
         <img src="<c:url value="/image/Pasted%20image.png"/>" style="height: 200px; margin-right: 20px;" alt=""/>
-        <h1 class="mb-0" style="line-height: 1; display: flex; align-items: center;">Welcome to e-Shoppers!</h1>
+        <c:if test="${sec:isAuthenticated(pageContext.request)}">
+            <h1 class="mb-0" style="line-height: 1; display: flex;align-items: center;">
+            Hello <c:out value="${sec:getCurrentUser(pageContext.request).firstName}"/>,
+            </h1>
+        </c:if>
+        <h1 class="mb-0" style="line-height: 1; display: flex; align-items: center;"> Welcome to e-Shoppers!</h1>
     </div>
     <div class="row g-4 mt-5 mb-5">
         <c:forEach var="product" items="${products}">
