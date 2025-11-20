@@ -1,9 +1,8 @@
 package com.imran.repository;
 
-import com.imran.dto.ProductDto;
-
+import com.imran.domain.Product;
 import java.util.List;
 
 public interface ProductRepository {
-    List<ProductDto> findAllProducts();
+    List<Product> findAllProducts();
 }

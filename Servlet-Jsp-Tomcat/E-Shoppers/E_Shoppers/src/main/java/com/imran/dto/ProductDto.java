@@ -3,14 +3,24 @@ package com.imran.dto;
 import java.math.BigDecimal;
 
 public class ProductDto {
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public ProductDto(String name, String description, BigDecimal price) {
+    public ProductDto(Long id, String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

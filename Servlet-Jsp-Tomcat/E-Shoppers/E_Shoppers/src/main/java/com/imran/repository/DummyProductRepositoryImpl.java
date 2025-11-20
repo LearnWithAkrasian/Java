@@ -1,32 +1,37 @@
 package com.imran.repository;
 
-import com.imran.dto.ProductDto;
+import com.imran.domain.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class DummyProductRepositoryImpl implements ProductRepository {
+    private static final List<Product> ALL_PRODUCTS = List.of(
+            new Product(
+                    1L,
+                    "Apple ipad",
+                    "Apple ipad 10.2.32GB",
+                    BigDecimal.valueOf(325.35)),
+
+            new Product(
+                    2L,
+                    "Headphone",
+                    "Jabra Elite Bluetooth Headphones",
+                    BigDecimal.valueOf(235.55)),
+
+            new Product(
+                    3L,
+                    "Keyboard",
+                    "Keychorn K3 Ultra slim",
+                    BigDecimal.valueOf(635.55)),
+            new Product(
+                    4L,
+                    "Microsoft Surface",
+                    "Surface Pro Max",
+                    BigDecimal.valueOf(777.99))
+    );
     @Override
-    public List<ProductDto> findAllProducts() {
-        return List.of(
-                new ProductDto(
-                "Apple ipad",
-                "Apple ipad 10.2.32GB",
-                BigDecimal.valueOf(325.35)),
-
-                new ProductDto(
-                "Headphone",
-                "Jabra Elite Bluetooth Headphones",
-                BigDecimal.valueOf(235.55)),
-
-                new ProductDto(
-                        "Keyboard",
-                        "Keychorn K3 Ultra slim",
-                        BigDecimal.valueOf(635.55)),
-                new ProductDto(
-                        "Microsoft Surface",
-                        "Surface Pro Max",
-                        BigDecimal.valueOf(777.99))
-        );
+    public List<Product> findAllProducts() {
+        return ALL_PRODUCTS;
     }
 }

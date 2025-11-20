@@ -1,6 +1,6 @@
 package com.imran.service;
 
-import com.imran.dto.ProductDto;
+import com.imran.domain.Product;
 import com.imran.repository.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,15 +13,17 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ProductServImplTest {
-    private static final ProductDto AppleIPad
-            = new ProductDto(
+    private static final Product AppleIPad
+            = new Product(
+                    1L,
                     "Apple ipad",
             "Apple ipad 10.2.32GB",
             BigDecimal.valueOf(325.35)
     );
 
-    private static final ProductDto Headphone
-            = new ProductDto(
+    private static final Product Headphone
+            = new Product(
+                    2L,
             "Headphone",
             "Jabra Elite Bluetooth Headphones",
             BigDecimal.valueOf(235.55)
@@ -59,7 +61,7 @@ public class ProductServImplTest {
         /*
          * Assert: Check that the products are correctly sorted by name
          */
-        Assertions.assertEquals(AppleIPad.getName(), sortedByName.get(0).getName());
-        Assertions.assertEquals(Headphone.getName(), sortedByName.get(1).getName());
+        Assertions.assertEquals(AppleIPad.getProductName(), sortedByName.get(0).getName());
+        Assertions.assertEquals(Headphone.getProductName(), sortedByName.get(1).getName());
     }
 }
