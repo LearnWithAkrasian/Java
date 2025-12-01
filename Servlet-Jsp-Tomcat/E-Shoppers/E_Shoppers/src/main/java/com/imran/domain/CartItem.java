@@ -1,6 +1,7 @@
 package com.imran.domain;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class CartItem {
     private Integer id;
@@ -38,5 +39,17 @@ public class CartItem {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CartItem cartItem = (CartItem) o;
+        return Objects.equals(product, cartItem.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(product);
     }
 }

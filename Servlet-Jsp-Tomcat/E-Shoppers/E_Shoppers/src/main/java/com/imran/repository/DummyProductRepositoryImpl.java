@@ -4,6 +4,7 @@ import com.imran.domain.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 public class DummyProductRepositoryImpl implements ProductRepository {
     private static final List<Product> ALL_PRODUCTS = List.of(
@@ -33,5 +34,13 @@ public class DummyProductRepositoryImpl implements ProductRepository {
     @Override
     public List<Product> findAllProducts() {
         return ALL_PRODUCTS;
+    }
+
+    @Override
+    public Optional<Product> findProductById(Long id) {
+        return findAllProducts()
+                .stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst();
     }
 }
