@@ -19,6 +19,28 @@
         </c:if>
         <h1 class="mb-0" style="line-height: 1; display: flex; align-items: center;"> Welcome to e-Shoppers!</h1>
     </div>
+    <div class="col-6 mb-4">
+        <c:if test="${cart != null && cart.cartItems.size() > 0}">
+            <div class="card-header">
+                <h4>Your Cart</h4>
+            </div>
+            <div class="card-body>">
+                <p>
+                    Total Item:
+                    <span class='badge badge-pill badge-success'>
+                        <c:out value="${cart.totalItem}"/>
+                    </span>
+                </p>
+                <p>
+                    Total Price:
+                    <span class='badge badge-pill badge-success'>
+                        <c:out value="${cart.totalPrice}"/>
+                    </span>
+                </p>
+                <p><a class="btn btn-outline-info" href="<c:url value="/checkout"/>">Checkout</a></p>
+            </div>
+        </c:if>
+    </div>
     <div class="row g-4 mt-5 mb-5">
         <c:forEach var="product" items="${products}">
             <div class="col-sm-4">
