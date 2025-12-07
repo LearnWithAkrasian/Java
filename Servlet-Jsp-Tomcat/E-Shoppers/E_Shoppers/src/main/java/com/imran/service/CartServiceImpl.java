@@ -4,6 +4,7 @@ import com.imran.domain.Cart;
 import com.imran.domain.CartItem;
 import com.imran.domain.Product;
 import com.imran.domain.User;
+import com.imran.exceptions.CartItemNotFoundException;
 import com.imran.exceptions.ProductNotFoundException;
 import com.imran.repository.CartItemRepository;
 import com.imran.repository.CartRepository;
@@ -57,12 +58,41 @@ public class CartServiceImpl implements CartService {
     }
 
     /**
-     * Check the product id is valid or not then added to the given cart
      * @param productId which product will be added in the given cart
      * @param cart current cart where product will be added with given product id
      */
     @Override
     public void addProductToCart(String productId, Cart cart) {
+        var product = findProduct(productId);
+
+        addProductToCart(cart, product); // add product to the cart
+        LOGGER.info("Product added to cart with id: {}", productId);
+        updateCart(cart);
+
+    }
+
+    @Override
+    public void removeProductToCart(String productId, Cart cart) {
+        var  product = findProduct(productId);
+
+        removeProductToCart(product, cart);
+        LOGGER.info("Product removed from cart with id: {}", productId);
+        updateCart(cart);
+    }
+
+    private void updateCart(Cart cart) {
+        Integer totalItems = getTotalItem(cart); // calculate the items in the cart
+        BigDecimal totalPrice = calculateTotalPrice(cart); // calculate total prices of all products
+
+        cart.setTotalPrice(totalPrice);
+        cart.setTotalItem(totalItems);
+        cartRepository.update(cart); // update the cart's state.
+
+        LOGGER.info("Total items added to cart: {}",  totalItems);
+        LOGGER.info("Total price added to cart: {}",  totalPrice);
+    }
+
+    private Product findProduct(String productId) {
         // if product id null or length = 0 then throw an exception
         // because id will not be null.
         if (productId == null || productId.length() == 0) {
@@ -73,20 +103,34 @@ public class CartServiceImpl implements CartService {
         Long id = parseProductId(productId);
 
         // retrieve product with the id. if not found then throw an exception
-        var product = productRepository.findProductById(id)
+        return productRepository.findProductById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found by id: " + id));
+    }
+    // Check first cart have any cartItem which have the product
+    // if no cartItem found then throw exception
+    // otherwise remove product by one
+    private void removeProductToCart(Product product, Cart cart) {
+        var cartItemOptional
+                = cart.getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getProduct().equals(product))
+                .findAny();
 
-        addProductToCart(cart, product); // add product to the cart
-        Integer totalItems = getTotalItem(cart); // calculate the items in the cart
-        BigDecimal totalPrice = calculateTotalPrice(cart); // calculate total prices of all products
+        var cartItem
+                = cartItemOptional
+                .orElseThrow(() -> new CartItemNotFoundException("Cart not found by product: " + product));
 
-        cart.setTotalPrice(totalPrice);
-        cart.setTotalItem(totalItems);
-
-        cartRepository.update(cart); // update the cart's state.
-        LOGGER.info("Product added to cart with id: {}", productId);
-        LOGGER.info("Total items added to cart: {}",  totalItems);
-        LOGGER.info("Total price added to cart: {}",  totalPrice);
+        // If product quantity is less then 2 then just remove
+        // otherwise reduce by one.
+        if (cartItem.getQuantity() > 1) {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setPrice(cartItem.getPrice().subtract(product.getProductPrice()));
+            cart.getCartItems().add(cartItem);
+            cartItemRepository.update(cartItem);
+        } else {
+            cart.getCartItems().remove(cartItem);
+            cartItemRepository.remove(cartItem);
+        }
     }
 
     // Calculate the Total cart items of the cart

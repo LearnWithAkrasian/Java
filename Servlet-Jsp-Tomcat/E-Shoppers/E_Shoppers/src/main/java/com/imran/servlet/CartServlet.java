@@ -2,12 +2,14 @@ package com.imran.servlet;
 
 import com.imran.domain.Cart;
 import com.imran.domain.User;
+import com.imran.enums.Action;
 import com.imran.repository.CartItemRepositoryImpl;
 import com.imran.repository.CartRepositoryImpl;
 import com.imran.repository.DummyProductRepositoryImpl;
 import com.imran.service.CartService;
 import com.imran.service.CartServiceImpl;
 import com.imran.util.SecurityContext;
+import com.imran.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,9 +36,17 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         var productId = req.getParameter("productId");
+        var action = req.getParameter("action");
+        var cart = getCart(req);
+
+        if (StringUtil.isNotEmpty(action)) {
+            processCart(productId, action, cart);
+
+            resp.sendRedirect("/checkout");
+            return;
+        }
         LOGGER.info("Received cart request to add a product with id: {} ", productId);
 
-        var cart = getCart(req);
         cartService.addProductToCart(productId, cart);
         resp.sendRedirect("/home");
     }
@@ -45,5 +55,18 @@ public class CartServlet extends HttpServlet {
     private Cart getCart(HttpServletRequest req) {
         final User currentUser = SecurityContext.getCurrentUser(req);
         return cartService.getCartByUser(currentUser);
+    }
+
+    private void processCart(String productId, String action, Cart cart) {
+        switch (Action.valueOf(action.toUpperCase())) {
+            case ADD:
+                LOGGER.info("Received request to add a product with id: {} ", productId);
+                cartService.addProductToCart(productId, cart);
+                break;
+            case REMOVE:
+                LOGGER.info("Received request to remove a product with id: {} ", productId);
+                cartService.removeProductToCart(productId, cart);
+                break;
+        }
     }
 }
