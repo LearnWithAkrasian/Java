@@ -31,7 +31,7 @@
                     <td>
                         <div class="btn-group" role="group">
                             <a class="btn btn-outline-warning"
-                            onclick="doAction(${cartItem.product.getId()}, 'remove')">
+                            onclick="doAction(${cartItem.product.getId()}, 'reduce')">
                                 -
                             </a>
                             <button type="button" class="btn">
@@ -47,7 +47,8 @@
                         $ <c:out value="${cartItem.price}"/>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-outline-warning">
+                        <a class="btn btn-outline-warning"
+                           onclick="doAction(${cartItem.product.getId()}, 'remove')">
                             Remove
                         </a>
                     </td>

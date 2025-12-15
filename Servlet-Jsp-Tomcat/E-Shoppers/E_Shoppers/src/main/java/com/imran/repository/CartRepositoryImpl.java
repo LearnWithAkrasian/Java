@@ -1,6 +1,7 @@
 package com.imran.repository;
 
 import com.imran.domain.Cart;
+import com.imran.domain.CartItem;
 import com.imran.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,23 +79,17 @@ public class CartRepositoryImpl implements CartRepository {
 
         return cart;
     }
+
+    @Override
+    public Optional<CartItem> findCartItem(Long productId, Cart cart) {
+        if (cart == null || cart.getCartItems() == null || cart.getCartItems().isEmpty()) {
+            return Optional.empty();
+        }
+
+        return cart.getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getProduct() != null &&
+                        Objects.equals(cartItem.getProduct().getId(), productId))
+                .findFirst();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

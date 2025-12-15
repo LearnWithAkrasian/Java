@@ -21,7 +21,8 @@ import java.util.Optional;
 // Creating new cart
 // Increasing existing product quantities
 // It Communicates with repos CarCartRepository, ProductRepository, CartItemRepository
-public class CartServiceImpl implements CartService {
+public class CartServiceImpl implements CartService
+{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CartServiceImpl.class);
 
@@ -58,6 +59,7 @@ public class CartServiceImpl implements CartService {
     }
 
     /**
+     * Here defined the action of '+' button in checkout.jsp
      * @param productId which product will be added in the given cart
      * @param cart current cart where product will be added with given product id
      */
@@ -71,13 +73,41 @@ public class CartServiceImpl implements CartService {
 
     }
 
+    // Here defined the action of '-' button in checkout.jsp
     @Override
-    public void removeProductToCart(String productId, Cart cart) {
+    public void reduceProductToCart(String productId, Cart cart) {
+        // finding the product using product id
         var  product = findProduct(productId);
 
         removeProductToCart(product, cart);
         LOGGER.info("Product removed from cart with id: {}", productId);
         updateCart(cart);
+    }
+
+    // Here defined the action 'Remove' button in checkout.jsp
+    @Override
+    public void removeCartItemFromCart(String productId, Cart cart) {
+
+        var cartItem = findCartItem(productId, cart);
+
+        cart.getCartItems().remove(cartItem);
+        LOGGER.info("Cart item removed from cart with id: {}", productId);
+        updateCart(cart);
+        cartItemRepository.remove(cartItem);
+    }
+
+    // Finding Cart Item by product id from a given cart.
+    private CartItem findCartItem(String productId, Cart cart) {
+        // if product id null or length = 0 then throw an exception
+        // because id will not be null.
+        if (productId == null || productId.length() == 0) {
+            throw new IllegalArgumentException("Product Id cannot be null");
+        }
+        // parsing string to Integer.
+        var id = parseProductId(productId);
+
+        return cartRepository.findCartItem(id, cart)
+                .orElseThrow(() -> new CartItemNotFoundException("No cart item found with id: " + id));
     }
 
     private void updateCart(Cart cart) {
@@ -102,7 +132,8 @@ public class CartServiceImpl implements CartService {
         // parsing string to Integer.
         Long id = parseProductId(productId);
 
-        // retrieve product with the id. if not found then throw an exception
+        // retrieve product with the id from product repo,
+        // if not found then throw an exception
         return productRepository.findProductById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found by id: " + id));
     }
@@ -125,7 +156,6 @@ public class CartServiceImpl implements CartService {
         if (cartItem.getQuantity() > 1) {
             cartItem.setQuantity(cartItem.getQuantity() - 1);
             cartItem.setPrice(cartItem.getPrice().subtract(product.getProductPrice()));
-            cart.getCartItems().add(cartItem);
             cartItemRepository.update(cartItem);
         } else {
             cart.getCartItems().remove(cartItem);

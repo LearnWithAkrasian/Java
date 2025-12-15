@@ -7,5 +7,6 @@ public interface CartService {
     Cart getCartByUser(User user);
     void  addProductToCart(String productId, Cart cart);
 
-    void removeProductToCart(String productId, Cart cart);
+    void reduceProductToCart(String productId, Cart cart);
+    void removeCartItemFromCart(String productId, Cart cart);
 }

@@ -57,16 +57,20 @@ public class CartServlet extends HttpServlet {
         return cartService.getCartByUser(currentUser);
     }
 
+    // here defined the logics of checkout.jsp '-', '+', and 'Remove' will work.
     private void processCart(String productId, String action, Cart cart) {
         switch (Action.valueOf(action.toUpperCase())) {
             case ADD:
                 LOGGER.info("Received request to add a product with id: {} ", productId);
                 cartService.addProductToCart(productId, cart);
                 break;
-            case REMOVE:
-                LOGGER.info("Received request to remove a product with id: {} ", productId);
-                cartService.removeProductToCart(productId, cart);
+            case REDUCE:
+                LOGGER.info("Received request to reduce a product with id: {} ", productId);
+                cartService.reduceProductToCart(productId, cart);
                 break;
+            case REMOVE:
+                LOGGER.info("Received request to remove a cart item with product id: {} ", productId);
+                cartService.removeCartItemFromCart(productId, cart);
         }
     }
 }
