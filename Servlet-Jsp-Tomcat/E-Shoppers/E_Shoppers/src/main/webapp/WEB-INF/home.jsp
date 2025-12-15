@@ -70,6 +70,13 @@
         </c:forEach>
     </div>
 </div>
+<div class="row">
+    <c:if test="${message != null}">
+        <div class="alert alert-success">
+            ${message}
+        </div>
+    </c:if>
+</div>
 
 <%@include file="includes/footer.jsp"%>
 

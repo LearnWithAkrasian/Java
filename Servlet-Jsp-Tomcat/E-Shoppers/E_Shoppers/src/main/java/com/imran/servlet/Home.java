@@ -38,6 +38,10 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
 
         LOGGER.info("Serving home page");
+        final String attribute = req.getParameter("orderStatus");
+        if (attribute != null && attribute.equals("confirmed")) {
+            req.setAttribute("message", "<strong>Congratulations!</strong> Your order has been confirmed!");
+        }
         List<ProductDto> allProducts = productService.findAllProductSortedByName();
         LOGGER.info("Total products found: {}", allProducts.size());
 
