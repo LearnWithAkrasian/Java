@@ -27,13 +27,13 @@
             <div class="card-body>">
                 <p>
                     Total Item:
-                    <span class='badge badge-pill badge-success'>
+                    <span class='badge bg-primary rounded-pill ms-2'>
                         <c:out value="${cart.totalItem}"/>
                     </span>
                 </p>
                 <p>
                     Total Price:
-                    <span class='badge badge-pill badge-success'>
+                    <span class='badge bg-primary rounded-pill ms-2'>
                         <c:out value="${cart.totalPrice}"/>
                     </span>
                 </p>
@@ -73,7 +73,7 @@
 <div class="row">
     <c:if test="${message != null}">
         <div class="alert alert-success">
-            ${message}
+            <c:out value="${message}" escapeXml="false"/>
         </div>
     </c:if>
 </div>

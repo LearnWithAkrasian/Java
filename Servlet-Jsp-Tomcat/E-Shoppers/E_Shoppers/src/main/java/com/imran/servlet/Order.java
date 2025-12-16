@@ -2,12 +2,11 @@ package com.imran.servlet;
 
 import com.imran.domain.ShippingAddress;
 import com.imran.dto.ShippingAddressDto;
-import com.imran.repository.CartItemRepositoryImpl;
-import com.imran.repository.CartRepositoryImpl;
-import com.imran.repository.DummyProductRepositoryImpl;
+import com.imran.repository.*;
 import com.imran.service.CartService;
 import com.imran.service.CartServiceImpl;
 import com.imran.service.OrderService;
+import com.imran.service.OrderServiceImpl;
 import com.imran.util.SecurityContext;
 import com.imran.util.ValidationUtil;
 import org.slf4j.Logger;
@@ -36,13 +35,16 @@ public class Order extends HttpServlet {
      * Cart service used to retrieve cart information for the current user.
      * Dependencies are manually instantiated here.
      */
-    private CartService cartService
+    private final CartService cartService
             = new CartServiceImpl(new CartRepositoryImpl(),
-            new DummyProductRepositoryImpl(),
-            new CartItemRepositoryImpl());
+                                  new DummyProductRepositoryImpl(),
+                                  new CartItemRepositoryImpl());
 
     /** Service responsible for processing orders */
-    private OrderService orderService;
+    private final OrderService orderService
+            = new OrderServiceImpl(new OrderRepositoryImpl(),
+                                   new ShippingAddressRepositoryImpl(),
+                                   new CartRepositoryImpl());
 
     /**
      * Handles GET requests.
@@ -71,6 +73,7 @@ public class Order extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        LOGGER.info("Serving POST Order");
         // Build ShippingAddress object from request parameters
         var shippingAddress = getShippingAddress(req);
 
@@ -79,6 +82,7 @@ public class Order extends HttpServlet {
 
         // If validation errors exist, return user to order page
         if (!errors.isEmpty()) {
+            LOGGER.info("Invalid shipping address");
             req.setAttribute("errors", errors);
             req.setAttribute("shippingAddress", shippingAddress);
 
@@ -90,13 +94,15 @@ public class Order extends HttpServlet {
         }
         // If validation passes, process the order
         else {
+            LOGGER.info("Order has been successfully created");
             orderService.processOrder(
                     shippingAddress,
                     SecurityContext.getCurrentUser(req)
             );
 
+            LOGGER.info("Redirect to home page with order confirmation status");
             // Redirect to home page with order confirmation status
-            resp.sendRedirect("/home?orderStatus=confirmed");
+            resp.sendRedirect(req.getContextPath() + "/home?orderStatus=true");
         }
     }
 

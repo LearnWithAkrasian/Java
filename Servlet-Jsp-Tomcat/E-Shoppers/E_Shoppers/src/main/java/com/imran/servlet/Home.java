@@ -38,9 +38,9 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
 
         LOGGER.info("Serving home page");
-        final String attribute = req.getParameter("orderStatus");
-        if (attribute != null && attribute.equals("confirmed")) {
-            req.setAttribute("message", "<strong>Congratulations!</strong> Your order has been confirmed!");
+        final String orderStatus = req.getParameter("orderStatus");
+        if (orderStatus != null && Boolean.parseBoolean(orderStatus)) {
+            req.setAttribute("message", "<strong>Congratulations!<strong> Your order has been confirmed!");
         }
         List<ProductDto> allProducts = productService.findAllProductSortedByName();
         LOGGER.info("Total products found: {}", allProducts.size());
@@ -48,7 +48,10 @@ public class Home extends HttpServlet {
 
         if (SecurityContext.isAuthenticated(req)) {
             var currentUser = SecurityContext.getCurrentUser(req);
-            req.setAttribute("cart", cartService.getCartByUser(currentUser));
+            Cart cart = cartService.getCartByUser(currentUser);
+            if (cart != null) {
+                req.setAttribute("cart", cart);
+            }
         }
         req.setAttribute("products", allProducts);
 

@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-5 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="country">Country</label>
                             <select class="custom-select d-block w-100"
                                     id="country"
@@ -106,7 +106,23 @@
                             </c:if>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label for="city">City</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="city"
+                                   name="city"
+                                   placeholder="city"
+                                   value="${shippingAddress.city}"
+                                   required/>
+                            <c:if test="${errors.city != null}">
+                                <small class="text-danger">
+                                        ${errors.city}
+                                </small>
+                            </c:if>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
                             <label for="state">State</label>
                             <input type="text"
                                    class="form-control"
